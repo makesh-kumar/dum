@@ -1,0 +1,40 @@
+<mat-card
+  class="profile-card"
+  (swipeleft)="onSwipeLeft()"
+  (swiperight)="onSwipeRight()"
+>
+  <mat-card-content>
+    <img
+      mat-card-image
+      [src]="profile.image"
+      alt="Profile image"
+      class="profile-image"
+    />
+    <div class="profile-info">
+      <h2 class="profile-name">{{ profile.name }}</h2>
+      <p class="profile-details">
+        {{ profile.age }} Yrs, {{ profile.height }}, {{ profile.occupation }},
+        {{ profile.location }}
+      </p>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="profile-actions">
+    <div class="shortlist">
+      <button mat-icon-button (click)="onShortlist()">
+        <mat-icon class="shortlist-icon">star</mat-icon>
+      </button>
+      <span class="shortlist-text">Shortlist</span>
+    </div>
+
+    <div class="like-options">
+      <span class="like-text">Like her?</span>
+      <button mat-icon-button (click)="onSwipeLeft()">
+        <mat-icon class="cross-icon">clear</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onSwipeRight()">
+        <mat-icon class="tick-icon">check</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

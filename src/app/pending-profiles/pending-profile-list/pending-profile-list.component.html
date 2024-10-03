@@ -1,0 +1,71 @@
+<div
+  class="profile-navigation-container"
+  (swipeleft)="onNext()"
+  (swiperight)="onPrevious()"
+>
+  <button mat-icon-button class="prev-button" (click)="onPrevious()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+
+  <div class="pending-profiles-grid">
+    <mat-card class="profile-card" *ngFor="let profile of currentProfiles">
+      <img
+        mat-card-image
+        [src]="profile.image"
+        alt="{{ profile.name }}"
+        class="profile-img"
+      />
+      <mat-card-content>
+        <div class="profile-info">
+          <h3>{{ profile.name }}</h3>
+          <p>
+            {{ profile.age }} Yrs, {{ profile.height }},
+            {{ profile.occupation }}
+          </p>
+          <p>{{ profile.location }}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-button
+          color="primary"
+          (click)="onYes(profile, profileDetailDialog)"
+        >
+          Yes
+        </button>
+        <button mat-button color="warn" (click)="onNo()">No</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <button mat-icon-button class="next-button" (click)="onNext()">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>
+
+<ng-template #profileDetailDialog>
+  <div class="dialog-container">
+    <div class="dialog-header">
+      <button mat-icon-button (click)="dialogRef.close()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <div class="dialog-image-container">
+      <img
+        [src]="selectedProfile.image"
+        alt="{{ selectedProfile.name }}"
+        class="dialog-img"
+      />
+    </div>
+
+    <div class="dialog-content">
+      <h2>{{ selectedProfile.name }}</h2>
+      <p>
+        {{ selectedProfile.age }} Yrs, {{ selectedProfile.height }},
+        {{ selectedProfile.occupation }}
+      </p>
+      <p>{{ selectedProfile.location }}</p>
+    </div>
+  </div>
+</ng-template>
